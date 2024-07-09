@@ -8,41 +8,42 @@ using namespace std;
 void practiceArrays();
 void practicePointers();
 void practiceStructs();
-void getNumbers(int numbers[], int COUNT);
+int* getNumbers(int* ptr, int count);
+int getCount();
 
 
 int main()
 {
-    practiceArrays();
-
+    //practiceArrays();
+    practicePointers();
 
 }
 
 void practiceArrays() {
-    const int COUNT = 5;
-    int numbers[COUNT];
+    int count = getCount();
+    int* ptr = nullptr;
 
     //get the numbers;
-    getNumbers(numbers, COUNT);
+    ptr = getNumbers(ptr, count);
 
     //print the array of numbers
     cout << endl << endl;
-    for (int num : numbers)
-        cout << num << endl;
+    for (int i = 0; i < count; i++)
+        cout << *(ptr + i) << endl;
 
     cout << endl;
 
     //calculate sum, average, max, and min
-    int sum = 0, max = numbers[0], min = numbers[0], count = 0;
+    int sum = 0, max = ptr[0], min = ptr[0];
     double average = 0.0;
 
-    for (int num : numbers) {
-        sum += num;
-        if (max < num)
-            max = num;
-        if (min > num)
-            min = num;
-        count++;
+    for (int i = 0; i < count; i++) {
+        sum += *(ptr + i);
+        if (max < *(ptr + i))
+            max = *(ptr + i);
+        if (min > *(ptr + i))
+            min = *(ptr + i);
+        
     }
     average = sum / static_cast<double>(count);
 
@@ -54,17 +55,52 @@ void practiceArrays() {
 
 }
 
-void getNumbers(int numbers[], int COUNT) {
+int getCount() {
+    int count;
+    cout << "How many numbers do you want to process?" << endl;
+    cin >> count;
 
-    for (int i = 0; i < COUNT; i++) {
+    return count;
+}
+
+int* getNumbers(int* ptr, int size) {
+
+    ptr = new int[size];
+
+    for (int i = 0; i < size; i++) {
         cout << "Please enter a value:  " << endl;
-        cin >> numbers[i];
+        cin >> *(ptr + i);
     }
-
+    return ptr;
+    delete[] ptr;
+    ptr = nullptr;
 }
 
 void practicePointers() {
+    string name;
+    int age;
+    string months[12] = { "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December" };
 
+    cout << "Enter your name." << endl;
+    cin >> name;
+
+    cout << name << endl;
+    cout << &name << endl;
+
+    cout << "What is your age?" << endl;
+    cin >> age;
+
+    cout << age << endl;
+    cout << &age << endl;
+
+    for (int i = 0; i < 12; i++) {
+        cout << *(months + i) << endl;
+    }
+
+    for (int i = 11; i >= -1; i--) {
+        cout << *(months + i) << endl;
+    }
 
 }
 
