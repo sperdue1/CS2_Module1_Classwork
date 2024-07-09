@@ -98,6 +98,8 @@ void practicePointers() {
         cout << *(months + i) << endl;
     }
 
+    cout << endl;
+
     for (int i = 11; i >= -1; i--) {
         cout << *(months + i) << endl;
     }
