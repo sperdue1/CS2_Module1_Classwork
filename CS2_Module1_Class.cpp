@@ -85,21 +85,25 @@ void practicePointers() {
     cout << "Enter your name." << endl;
     cin >> name;
 
+    //printing the value and memory address
     cout << name << endl;
     cout << &name << endl;
 
     cout << "What is your age?" << endl;
     cin >> age;
 
+    //printing the value and memory address
     cout << age << endl;
     cout << &age << endl;
 
+    //printing January to December
     for (int i = 0; i < 12; i++) {
         cout << *(months + i) << endl;
     }
 
     cout << endl;
 
+    //printing December to January
     for (int i = 11; i >= -1; i--) {
         cout << *(months + i) << endl;
     }
