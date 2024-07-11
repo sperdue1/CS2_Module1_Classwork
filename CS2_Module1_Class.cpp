@@ -3,11 +3,30 @@
 // CS2 at UCA with Baarsch
 
 #include <iostream>
+#include <ctime>
 using namespace std;
+
+//Suit, which should contain a string, name, and int value.
+struct Suit {
+    string name;
+    int value;
+};
+
+//Rank, which should contain a string, name, and an int value.
+struct Rank {
+    string name;
+    int value;
+};
+
+//Card, which should contain a Suit, a Rank, and a boolean, isFaceUp.
+struct Card {
+    Suit suit;
+    Rank rank;
+    bool isFaceUp = false;
+};
 
 void practiceArrays();
 void practicePointers();
-void practiceStructs();
 int* getNumbers(int* ptr, int count);
 int getCount();
 
@@ -15,8 +34,48 @@ int getCount();
 int main()
 {
     //practiceArrays();
-    practicePointers();
+    //practicePointers();
 
+    srand(time(0));
+
+    Suit suits[4] = {
+        {"hearts", 4},
+        {"diamonds", 3},
+        {"clubs", 2},
+        {"spades", 1}
+    };
+
+    Rank ranks[13] = {
+        {"Ace", 1},
+        {"Two", 2},
+        {"Three", 3},
+        {"Four", 4},
+        {"Five", 5},
+        {"Six", 6},
+        {"Seven", 7},
+        {"Eight", 8},
+        {"Nine", 9},
+        {"Ten", 10},
+        {"Jack", 10},
+        {"Queen", 10},
+        {"King", 10},
+    };
+
+    Card deck[52];
+
+    for (int i = 0; i < 52; i++) {
+        Card tempCard = { suits[i / 13], ranks[i % 13], true };
+        deck[i] = tempCard;
+    }
+
+    //for (Card card : deck) {
+    //    cout << "The " << card.rank.name << " of " << card.suit.name << endl;
+    //}
+
+    for (int i = 0; i < 5; i++) {
+        Card card = deck[rand() % 52];
+        cout << "The " << card.rank.name << " of " << card.suit.name << endl;
+    }
 }
 
 void practiceArrays() {
@@ -85,32 +144,22 @@ void practicePointers() {
     cout << "Enter your name." << endl;
     cin >> name;
 
-    //printing the value and memory address
     cout << name << endl;
     cout << &name << endl;
 
     cout << "What is your age?" << endl;
     cin >> age;
 
-    //printing the value and memory address
     cout << age << endl;
     cout << &age << endl;
 
-    //printing January to December
     for (int i = 0; i < 12; i++) {
         cout << *(months + i) << endl;
     }
 
-    cout << endl;
-
-    //printing December to January
     for (int i = 11; i >= -1; i--) {
         cout << *(months + i) << endl;
     }
 
 }
 
-void practiceStructs() {
-
-
-}
